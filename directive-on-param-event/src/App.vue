@@ -1,20 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from "vue";
+// 1
+const mousePointerX = ref(0);
+const mousePointerY = ref(0);
+// 2
+const onImgMousemove = (event: MouseEvent): void => {
+  mousePointerX.value = event.offsetX;
+  mousePointerY.value = event.offsetY;
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+<section>
+    <img
+      src="./assets/logo.svg"
+      alt="Vueのロゴ"
+      width="200"
+      @mouseover="onImgMousemove"
+    />
+  <p>ポインタの位置: x={{ mousePointerX }}; y={{ mousePointerY }}</p>
+</section>
 </template>
 
 <style scoped>
